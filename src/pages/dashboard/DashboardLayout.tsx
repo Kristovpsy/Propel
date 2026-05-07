@@ -28,8 +28,15 @@ export default function DashboardLayout() {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
   async function handleLogout() {
-    await supabase.auth.signOut();
-    navigate('/login');
+    try {
+      useAuthStore.getState().reset();
+      await supabase.auth.signOut();
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+      // Force navigate even if signOut fails
+      navigate('/login');
+    }
   }
 
   const filteredNav = NAV_ITEMS.filter(item => {

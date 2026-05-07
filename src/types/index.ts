@@ -50,6 +50,8 @@ export interface WorkHistoryEntry {
 export interface MenteeProfile {
   id: string;
   user_id: string;
+  bio: string;
+  area_of_interest: string;
   aspirations: string;
   learning_goals: string[];
   desired_skills: string[];

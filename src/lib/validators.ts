@@ -37,6 +37,8 @@ export const mentorProfileSchema = z.object({
 export const menteeProfileSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters').max(30, 'Username must be under 30 characters').regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores'),
   gender: z.enum(['Male', 'Female', 'Non-binary', 'Prefer not to say'], { error: 'Please select your gender' }),
+  area_of_interest: z.string().min(1, 'Please select an area of interest'),
+  bio: z.string().min(20, 'Bio must be at least 20 characters').max(1000, 'Bio must be under 1000 characters'),
   aspirations: z.string().min(20, 'Aspirations must be at least 20 characters').max(1000, 'Must be under 1000 characters'),
   learning_goals: z.array(z.string()).min(1, 'Add at least one learning goal').max(5, 'Maximum 5 goals'),
   desired_skills: z.array(z.string()).min(1, 'Add at least one desired skill').max(10, 'Maximum 10 skills'),
