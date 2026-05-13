@@ -250,6 +250,29 @@ export async function fetchRecommendedMentors(
 }
 
 // ================================================================
+// SERVER-SIDE MATCHING (Edge Function)
+// ================================================================
+
+import type { MatchResult } from '../types';
+
+/**
+ * Invoke the match-mentors Edge Function for server-side,
+ * weighted algorithmic matching. Falls back to the client-side
+ * fetchRecommendedMentors if the edge function is unavailable.
+ */
+export async function fetchMatchedMentors(
+  menteeId: string,
+  limit: number = 10
+): Promise<MatchResult[]> {
+  const { data, error } = await supabase.functions.invoke('match-mentors', {
+    body: { mentee_id: menteeId, limit },
+  });
+
+  if (error) throw error;
+  return (data?.matches as MatchResult[]) || [];
+}
+
+// ================================================================
 // CONNECTIONS
 // ================================================================
 

@@ -38,7 +38,31 @@ export interface MentorProfile {
   area_of_mentorship: string;
   years_of_experience: number;
   portfolio: string | null;
+  total_requests: number;
+  total_responded: number;
+  total_accepted: number;
+  response_rate: number;
+  acceptance_ratio: number;
   created_at: string;
+}
+
+// ---------- Match Algorithm Types ----------
+
+export interface MatchBreakdown {
+  skills_score: number;
+  aspirations_score: number;
+  rating_score: number;
+  responsiveness_score: number;
+}
+
+export interface MatchResult {
+  mentor_id: string;
+  total_score: number;
+  breakdown: MatchBreakdown;
+  mentor_profile: MentorProfile;
+  profile: Pick<Profile, 'id' | 'full_name' | 'avatar_url' | 'email'>;
+  avg_rating: number;
+  review_count: number;
 }
 
 export interface WorkHistoryEntry {

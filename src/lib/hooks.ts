@@ -5,6 +5,7 @@ import {
   fetchMentorById,
   fetchMenteeById,
   fetchRecommendedMentors,
+  fetchMatchedMentors,
   fetchConnections,
   fetchConnectionStatus,
   fetchCurriculum,
@@ -13,7 +14,7 @@ import {
   type MentorSearchFilters,
   type MentorWithProfile,
 } from './api';
-import type { Connection, Curriculum, MenteeProfile } from '../types';
+import type { Connection, Curriculum, MenteeProfile, MatchResult } from '../types';
 
 // ================================================================
 // Generic async data hook
@@ -96,6 +97,19 @@ export function useRecommendedMentors(
       return fetchRecommendedMentors(menteeProfile, excludeIds, limit);
     },
     [menteeProfile?.id, excludeIds.join(','), limit]
+  );
+}
+
+export function useMatchedMentors(
+  menteeId: string | undefined,
+  limit: number = 10
+) {
+  return useAsyncData<MatchResult[]>(
+    () => {
+      if (!menteeId) return Promise.resolve([]);
+      return fetchMatchedMentors(menteeId, limit);
+    },
+    [menteeId, limit]
   );
 }
 

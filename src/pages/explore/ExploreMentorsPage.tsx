@@ -1,8 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, Filter, X, Compass, Users } from 'lucide-react';
+import { Search, Filter, X, Compass, Users, Sparkles, ChevronRight } from 'lucide-react';
 import MentorCard from '../../components/mentors/MentorCard';
-import { useMentors } from '../../lib/hooks';
-import type { MentorSearchFilters } from '../../lib/api';
+import { useMentors, useMatchedMentors } from '../../lib/hooks';
+import { useAuthStore } from '../../lib/store';
+import type { MentorSearchFilters, MentorWithProfile } from '../../lib/api';
+import type { MatchResult } from '../../types';
 
 const POPULAR_TAGS = [
   'Software Engineering', 'Product Design', 'Data Science', 'Product Management',
@@ -11,7 +13,32 @@ const POPULAR_TAGS = [
   'Entrepreneurship', 'Career Transitions', 'Marketing', 'System Design',
 ];
 
+/**
+ * Convert a MatchResult into a MentorWithProfile shape so MentorCard can render it.
+ */
+function matchToMentorCard(match: MatchResult): MentorWithProfile {
+  return {
+    id: match.profile.id,
+    full_name: match.profile.full_name,
+    avatar_url: match.profile.avatar_url,
+    email: match.profile.email,
+    role: 'mentor',
+    onboarding_complete: true,
+    created_at: match.mentor_profile.created_at,
+    first_name: '',
+    last_name: '',
+    username: null,
+    gender: null,
+    mentor_profiles: [match.mentor_profile],
+    avg_rating: match.avg_rating,
+    review_count: match.review_count,
+  };
+}
+
 export default function ExploreMentorsPage() {
+  const { profile } = useAuthStore();
+  const isMentee = profile?.role === 'mentee';
+
   const [searchInput, setSearchInput] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -35,6 +62,12 @@ export default function ExploreMentorsPage() {
 
   const { data: mentors, isLoading, error } = useMentors(filters);
 
+  // Algorithm-matched mentors (only for mentees)
+  const {
+    data: matchedMentors,
+    isLoading: isLoadingMatches,
+  } = useMatchedMentors(isMentee ? profile?.id : undefined, 10);
+
   function toggleTag(tag: string) {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
@@ -51,6 +84,13 @@ export default function ExploreMentorsPage() {
   const hasActiveFilters =
     searchInput.length > 0 || selectedTags.length > 0 || availableOnly;
 
+  // Only show matches when not actively filtering
+  const showMatchesSection =
+    isMentee &&
+    !hasActiveFilters &&
+    matchedMentors &&
+    matchedMentors.length > 0;
+
   return (
     <div className="animate-fade-in max-w-6xl mx-auto">
       {/* Page header */}
@@ -65,6 +105,90 @@ export default function ExploreMentorsPage() {
           Discover mentors who match your goals and interests.
         </p>
       </div>
+
+      {/* ============================================================= */}
+      {/* BEST MATCHES SECTION (mentees only, no active filters) */}
+      {/* ============================================================= */}
+      {showMatchesSection && (
+        <div className="mb-8 animate-fade-in">
+          {/* Section header */}
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+                 style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
+              <Sparkles className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                Best Matches for You
+              </h2>
+              <p className="text-xs text-slate-400">
+                Scored by skills, aspirations, rating &amp; responsiveness
+              </p>
+            </div>
+          </div>
+
+          {/* Matched mentor cards — horizontal scroll on small screens, grid on large */}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {matchedMentors!.slice(0, 6).map((match) => (
+              <MentorCard
+                key={match.mentor_id}
+                mentor={matchToMentorCard(match)}
+                matchScore={match.total_score}
+              />
+            ))}
+          </div>
+
+          {matchedMentors!.length > 6 && (
+            <div className="mt-3 text-center">
+              <button className="text-sm text-brand-blue-600 hover:text-brand-blue-700 font-medium inline-flex items-center gap-1 transition-colors">
+                View all {matchedMentors!.length} matches
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Divider */}
+          <div className="mt-8 border-t border-slate-100" />
+        </div>
+      )}
+
+      {/* Loading skeleton for matches */}
+      {isMentee && isLoadingMatches && !hasActiveFilters && (
+        <div className="mb-8">
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-slate-200 animate-pulse" />
+            <div>
+              <div className="h-5 bg-slate-200 rounded w-48 mb-1 animate-pulse" />
+              <div className="h-3 bg-slate-100 rounded w-64 animate-pulse" />
+            </div>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-2xl border border-slate-100 p-6 animate-pulse"
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-slate-200" />
+                  <div className="flex-1">
+                    <div className="h-4 bg-slate-200 rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-slate-100 rounded w-1/2 mb-2" />
+                    <div className="h-5 bg-slate-100 rounded-full w-20" />
+                  </div>
+                </div>
+                <div className="h-3 bg-slate-100 rounded w-full mb-2" />
+                <div className="h-3 bg-slate-100 rounded w-2/3 mb-4" />
+                <div className="flex gap-1.5">
+                  <div className="h-6 bg-slate-100 rounded-full w-16" />
+                  <div className="h-6 bg-slate-100 rounded-full w-20" />
+                  <div className="h-6 bg-slate-100 rounded-full w-14" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 border-t border-slate-100" />
+        </div>
+      )}
 
       {/* Search + Filter bar */}
       <div className="bg-white rounded-2xl shadow-card border border-slate-100 p-4 mb-6">
@@ -183,6 +307,11 @@ export default function ExploreMentorsPage() {
             </button>
           ))}
         </div>
+      )}
+
+      {/* Section label when matches are shown */}
+      {showMatchesSection && !hasActiveFilters && (
+        <h2 className="text-lg font-bold text-slate-900 mb-4 mt-2">All Mentors</h2>
       )}
 
       {/* Results */}

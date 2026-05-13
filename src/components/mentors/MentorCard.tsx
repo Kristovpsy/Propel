@@ -1,24 +1,37 @@
 import { Link } from 'react-router-dom';
-import { Star, Users } from 'lucide-react';
+import { Star, Users, Sparkles } from 'lucide-react';
 import type { MentorWithProfile } from '../../lib/api';
 
 interface MentorCardProps {
   mentor: MentorWithProfile;
   compact?: boolean;
+  matchScore?: number; // 0-1 from matching algorithm
 }
 
-export default function MentorCard({ mentor, compact = false }: MentorCardProps) {
+export default function MentorCard({ mentor, compact = false, matchScore }: MentorCardProps) {
   const mp = mentor.mentor_profiles?.[0];
   const tags = mp?.expertise_tags || [];
   const avgRating = mentor.avg_rating || 0;
   const reviewCount = mentor.review_count || 0;
   const isAtCapacity = mp?.is_at_capacity ?? false;
+  const matchPercent = matchScore != null ? Math.round(matchScore * 100) : null;
 
   return (
     <Link
       to={`/mentor/${mentor.id}`}
-      className="group block bg-white rounded-2xl shadow-card border border-slate-100 hover:shadow-card-hover transition-all duration-300 overflow-hidden"
+      className="group block bg-white rounded-2xl shadow-card border border-slate-100 hover:shadow-card-hover transition-all duration-300 overflow-hidden relative"
     >
+      {/* Match score badge */}
+      {matchPercent != null && matchPercent > 0 && (
+        <div className="absolute top-3 right-3 z-10">
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-lg"
+               style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
+            <Sparkles className="w-3 h-3" />
+            {matchPercent}% match
+          </div>
+        </div>
+      )}
+
       {/* Card content */}
       <div className={compact ? 'p-4' : 'p-6'}>
         {/* Top section: avatar + name */}
