@@ -626,6 +626,7 @@ export async function fetchMessages(
 ) {
   const column = type === 'dm' ? 'connection_id' : 'group_id';
 
+  // Try with explicit FK hint first
   const { data, error } = await supabase
     .from('messages')
     .select(`
@@ -637,7 +638,72 @@ export async function fetchMessages(
     .order('created_at', { ascending: true })
     .limit(limit);
 
-  if (error) throw error;
+  if (error) {
+    console.warn('[fetchMessages] Query with FK hint failed, trying fallback:', {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+
+    // Fallback: query without FK hint (let PostgREST auto-detect the relationship)
+    const { data: fallbackData, error: fallbackError } = await supabase
+      .from('messages')
+      .select(`
+        *,
+        sender:profiles!sender_id(id, full_name, avatar_url)
+      `)
+      .eq(column, channelId)
+      .eq('type', type)
+      .order('created_at', { ascending: true })
+      .limit(limit);
+
+    if (fallbackError) {
+      console.error('[fetchMessages] Fallback query also failed:', {
+        code: fallbackError.code,
+        message: fallbackError.message,
+        details: fallbackError.details,
+        hint: fallbackError.hint,
+      });
+
+      // Last resort: fetch messages without join, then enrich sender separately
+      const { data: rawMessages, error: rawError } = await supabase
+        .from('messages')
+        .select('*')
+        .eq(column, channelId)
+        .eq('type', type)
+        .order('created_at', { ascending: true })
+        .limit(limit);
+
+      if (rawError) {
+        console.error('[fetchMessages] Raw query failed — likely RLS or table issue:', {
+          code: rawError.code,
+          message: rawError.message,
+          details: rawError.details,
+        });
+        throw rawError;
+      }
+
+      // Enrich with sender profiles
+      const msgs = rawMessages || [];
+      if (msgs.length === 0) return [];
+
+      const senderIds = [...new Set(msgs.map((m: any) => m.sender_id))];
+      const { data: senders } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url')
+        .in('id', senderIds);
+
+      const senderMap = new Map((senders || []).map((s: any) => [s.id, s]));
+      return msgs.map((m: any) => ({
+        ...m,
+        sender: senderMap.get(m.sender_id) || { id: m.sender_id, full_name: 'Unknown', avatar_url: null },
+      }));
+    }
+
+    return fallbackData || [];
+  }
+
   return data || [];
 }
 
@@ -655,6 +721,7 @@ export async function sendMessage(
   if (type === 'dm') payload.connection_id = channelId;
   else payload.group_id = channelId;
 
+  // Try with FK hint first
   const { data, error } = await supabase
     .from('messages')
     .insert(payload)
@@ -664,7 +731,44 @@ export async function sendMessage(
     `)
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.warn('[sendMessage] Insert with FK hint failed, trying fallback:', {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+
+    // Fallback: insert without the join in .select()
+    const { data: rawData, error: rawError } = await supabase
+      .from('messages')
+      .insert(payload)
+      .select('*')
+      .single();
+
+    if (rawError) {
+      console.error('[sendMessage] Raw insert also failed:', {
+        code: rawError.code,
+        message: rawError.message,
+        details: rawError.details,
+        hint: rawError.hint,
+      });
+      throw rawError;
+    }
+
+    // Fetch sender info separately
+    const { data: senderProfile } = await supabase
+      .from('profiles')
+      .select('id, full_name, avatar_url')
+      .eq('id', senderId)
+      .single();
+
+    return {
+      ...rawData,
+      sender: senderProfile || { id: senderId, full_name: 'You', avatar_url: null },
+    };
+  }
+
   return data;
 }
 
@@ -673,7 +777,10 @@ export async function fetchConversations(userId: string, role: 'mentor' | 'mente
   const column = role === 'mentor' ? 'mentor_id' : 'mentee_id';
   const partnerCol = role === 'mentor' ? 'mentee' : 'mentor';
 
-  const { data: connections } = await supabase
+  let connections: any[] | null = null;
+
+  // Try with FK hints first
+  const { data: connData, error: connError } = await supabase
     .from('connections')
     .select(`
       id, status,
@@ -682,6 +789,41 @@ export async function fetchConversations(userId: string, role: 'mentor' | 'mente
     `)
     .eq(column, userId)
     .eq('status', 'active');
+
+  if (connError) {
+    console.warn('[fetchConversations] FK hint query failed, trying fallback:', {
+      code: connError.code,
+      message: connError.message,
+    });
+
+    // Fallback: fetch connections without joined profiles, then enrich
+    const { data: rawConns } = await supabase
+      .from('connections')
+      .select('id, status, mentor_id, mentee_id')
+      .eq(column, userId)
+      .eq('status', 'active');
+
+    if (rawConns && rawConns.length > 0) {
+      const allUserIds = [
+        ...new Set(rawConns.flatMap((c: any) => [c.mentor_id, c.mentee_id])),
+      ];
+      const { data: profiles } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url')
+        .in('id', allUserIds);
+
+      const profileMap = new Map((profiles || []).map((p: any) => [p.id, p]));
+      connections = rawConns.map((c: any) => ({
+        ...c,
+        mentor: profileMap.get(c.mentor_id) || null,
+        mentee: profileMap.get(c.mentee_id) || null,
+      }));
+    } else {
+      connections = [];
+    }
+  } else {
+    connections = connData;
+  }
 
   // Fetch groups the user is a member of or owns
   const { data: ownedGroups } = await supabase

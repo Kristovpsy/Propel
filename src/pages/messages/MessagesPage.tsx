@@ -27,8 +27,16 @@ export default function MessagesPage() {
         if (convs.length > 0 && !activeConv) {
           setActiveConv(convs[0]);
         }
-      } catch (err) {
-        console.error('Failed to load conversations:', err);
+      } catch (err: any) {
+        console.error('[MessagesPage] Failed to load conversations:', {
+          error: err,
+          code: err?.code,
+          message: err?.message,
+          details: err?.details,
+          hint: err?.hint,
+          userId: profile?.id,
+          role: profile?.role,
+        });
         toast.error('Failed to load conversations.');
       } finally {
         setIsLoading(false);
