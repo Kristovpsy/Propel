@@ -30,6 +30,22 @@ export function useChat({ type, channelId, userId }: UseChatOptions) {
   const [isSending, setIsSending] = useState(false);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
+  // Pre-populate sender cache with the current user's profile on mount
+  useEffect(() => {
+    if (!userId || senderCache.has(userId)) return;
+
+    supabase
+      .from('profiles')
+      .select('id, full_name, avatar_url')
+      .eq('id', userId)
+      .single()
+      .then(({ data }) => {
+        if (data) {
+          senderCache.set(data.id, data);
+        }
+      });
+  }, [userId]);
+
   // Load initial messages
   const loadMessages = useCallback(async () => {
     if (!channelId) return;
@@ -160,7 +176,7 @@ export function useChat({ type, channelId, userId }: UseChatOptions) {
       const trimmed = content.trim();
       const tempId = `optimistic-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-      // Cache the current user's profile info for optimistic rendering
+      // Use cached sender info (pre-populated on mount) for optimistic rendering
       const currentUserSender = senderCache.get(userId) || {
         id: userId,
         full_name: 'You',
@@ -184,7 +200,8 @@ export function useChat({ type, channelId, userId }: UseChatOptions) {
       setIsSending(true);
 
       try {
-        const sentMsg = await sendMessageApi(userId, type, channelId, trimmed);
+        // Pass cached sender info to avoid an extra DB fetch in sendMessage
+        const sentMsg = await sendMessageApi(userId, type, channelId, trimmed, currentUserSender);
 
         // Cache sender info from the response
         if (sentMsg?.sender?.id) {

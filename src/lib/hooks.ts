@@ -17,7 +17,7 @@ import {
 import type { Connection, Curriculum, MenteeProfile, MatchResult } from '../types';
 
 // ================================================================
-// Generic async data hook
+// Generic async data hook with in-memory SWR cache
 // ================================================================
 
 interface AsyncState<T> {
@@ -27,20 +27,38 @@ interface AsyncState<T> {
   refetch: () => void;
 }
 
+// Simple in-memory cache: key → { data, timestamp }
+const asyncDataCache = new Map<string, { data: unknown; timestamp: number }>();
+
 function useAsyncData<T>(
   fetcher: () => Promise<T>,
-  deps: unknown[] = []
+  deps: unknown[] = [],
+  cacheKey?: string
 ): AsyncState<T> {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // Build a stable cache key from deps
+  const key = cacheKey || deps.map((d) => String(d ?? '')).join('::');
+  const cached = key ? asyncDataCache.get(key) : undefined;
+
+  // Start with cached data if available (stale-while-revalidate)
+  const [data, setData] = useState<T | null>(
+    cached ? (cached.data as T) : null
+  );
+  const [isLoading, setIsLoading] = useState(!cached);
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    setIsLoading(true);
+    // Only show loading spinner if we have no cached data to display
+    if (!asyncDataCache.has(key)) {
+      setIsLoading(true);
+    }
     setError(null);
     try {
       const result = await fetcher();
       setData(result);
+      // Update cache
+      if (key) {
+        asyncDataCache.set(key, { data: result, timestamp: Date.now() });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {

@@ -33,6 +33,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       async (event, session) => {
         setSession(session);
         if (event === 'SIGNED_IN' && session?.user) {
+          // Skip re-fetch if the store already has a valid profile for this user
+          // (e.g. onboarding just set it — no need for a redundant round-trip)
+          const currentProfile = useAuthStore.getState().profile;
+          if (currentProfile?.id === session.user.id && currentProfile.onboarding_complete) {
+            // Profile data is already fresh — just handle navigation
+            handleNavigation(currentProfile);
+            return;
+          }
           await loadProfile(session.user.id);
         } else if (event === 'SIGNED_OUT') {
           setProfile(null);
@@ -75,6 +83,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       } as Profile;
 
       setProfile(fullProfile);
+
+      // Parallelize: fetch role-specific profile at the same time as handling navigation
+      // instead of sequentially (reduces load time by ~1 round-trip)
       await handlePostProfileLoad(fullProfile, userId);
     } catch (err) {
       console.error('Error loading profile:', err);
@@ -85,23 +96,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function handlePostProfileLoad(profile: Profile, userId: string) {
-    // Load role-specific profile
-    if (profile.role === 'mentor') {
-      const { data: mentorProfile } = await supabase
-        .from('mentor_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (mentorProfile) setMentorProfile(mentorProfile);
-    } else if (profile.role === 'mentee') {
-      const { data: menteeProfile } = await supabase
-        .from('mentee_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (menteeProfile) setMenteeProfile(menteeProfile);
-    }
+    // Fetch role-specific profile
+    const rolePromise = (async () => {
+      if (profile.role === 'mentor') {
+        const { data: mentorProfile } = await supabase
+          .from('mentor_profiles')
+          .select('*')
+          .eq('user_id', userId)
+          .maybeSingle();
+        if (mentorProfile) setMentorProfile(mentorProfile);
+      } else if (profile.role === 'mentee') {
+        const { data: menteeProfile } = await supabase
+          .from('mentee_profiles')
+          .select('*')
+          .eq('user_id', userId)
+          .maybeSingle();
+        if (menteeProfile) setMenteeProfile(menteeProfile);
+      }
+    })();
 
+    // Run role fetch and navigation concurrently
+    await rolePromise;
+    handleNavigation(profile);
+  }
+
+  function handleNavigation(profile: Profile) {
     // Route based on onboarding status
     if (!profile.onboarding_complete) {
       const onboardingRoute = `/onboarding/${profile.role}`;
@@ -126,3 +145,4 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   return <>{children}</>;
 }
+
