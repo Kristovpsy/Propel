@@ -163,7 +163,7 @@ export default function EventCard({
                 className="w-6 h-6 rounded-full object-cover"
               />
             ) : (
-              <div className="w-6 h-6 rounded-full bg-brand-gradient flex items-center justify-center text-white text-[10px] font-bold">
+              <div className="w-6 h-6 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-[10px] font-bold">
                 {event.mentor.full_name?.charAt(0)}
               </div>
             )}
@@ -192,7 +192,7 @@ export default function EventCard({
                         className="w-6 h-6 rounded-full object-cover ring-2 ring-white"
                       />
                     ) : (
-                      <div className="w-6 h-6 rounded-full bg-brand-gradient flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white">
+                      <div className="w-6 h-6 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white">
                         {r.profile?.full_name?.charAt(0) || '?'}
                       </div>
                     )}

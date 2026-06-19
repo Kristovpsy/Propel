@@ -91,7 +91,7 @@ export default function CreateEventModal({
         {/* Header */}
         <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-brand-gradient flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Calendar className="w-4 h-4 text-white" />
             </div>
             <div>

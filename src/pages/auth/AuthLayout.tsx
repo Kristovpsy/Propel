@@ -2,11 +2,11 @@ import { Outlet, Link } from 'react-router-dom';
 
 export default function AuthLayout() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-green-50/30 font-montserrat flex flex-col">
+    <div className="min-h-screen bg-slate-50 font-montserrat flex flex-col">
       {/* Top bar */}
       <div className="px-6 py-4">
         <Link to="/" className="inline-block">
-          <img src="/logo.jpg" alt="Propel" className="h-7" />
+          <img src="/propel-logo.png" alt="Propel" className="h-7" />
         </Link>
       </div>
 

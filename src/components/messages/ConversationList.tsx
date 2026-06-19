@@ -59,7 +59,7 @@ export default function ConversationList({
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
                     {conv.name.charAt(0)}
                   </div>
                 )

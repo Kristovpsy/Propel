@@ -115,7 +115,7 @@ export default function EventsPage() {
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
             </div>
             Events

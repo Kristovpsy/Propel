@@ -28,7 +28,7 @@ export default function ProfilePage() {
     <div className="animate-fade-in max-w-2xl mx-auto">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <User className="w-5 h-5 text-white" />
           </div>
           My Profile
@@ -366,7 +366,7 @@ function ProfileCompletion({ profile, mentorProfile, menteeProfile }: {
           <span className="text-sm text-brand-green-600 font-medium">Complete</span>
         </div>
         <div className="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-          <div className="h-full bg-brand-gradient rounded-full transition-all duration-700" style={{ width: `${percentage}%` }} />
+          <div className="h-full bg-brand-green-600 rounded-full transition-all duration-700" style={{ width: `${percentage}%` }} />
         </div>
       </div>
       <div className="space-y-2 text-sm">

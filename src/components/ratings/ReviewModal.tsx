@@ -106,7 +106,7 @@ export default function ReviewModal({
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center text-white font-bold">
+                  <div className="w-12 h-12 rounded-full bg-brand-green-600 flex items-center justify-center text-white font-bold">
                     {revieweeName.charAt(0)}
                   </div>
                 )}

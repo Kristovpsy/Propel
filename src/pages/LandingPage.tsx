@@ -8,7 +8,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-nav">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src="/logo.jpg" alt="Propel" className="h-8" />
+            <img src="/propel-logo.png" alt="Propel" className="h-8" />
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
@@ -30,7 +30,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-28 pb-20 px-6 bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/20">
+      <section className="pt-28 pb-20 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
@@ -74,7 +74,7 @@ export default function LandingPage() {
 
             {/* Hero Card */}
             <div className="relative animate-slide-up hidden lg:block">
-              <div className="absolute -top-4 -right-4 w-full h-full bg-brand-gradient rounded-3xl opacity-10" />
+              <div className="absolute -top-4 -right-4 w-full h-full bg-brand-green-600 rounded-3xl opacity-10" />
               <div className="relative card p-0 overflow-hidden">
                 {/* Session Badge */}
                 <div className="absolute top-4 right-4 z-10 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
@@ -83,7 +83,7 @@ export default function LandingPage() {
                 </div>
                 
                 {/* Card Image Area */}
-                <div className="h-64 bg-brand-gradient flex items-center justify-center">
+                <div className="h-64 bg-brand-green-600 flex items-center justify-center">
                   <div className="text-center">
                     <Users className="w-16 h-16 text-white/80 mx-auto mb-3" />
                     <p className="text-white/90 font-semibold text-lg">Mentorship in Action</p>
@@ -157,10 +157,10 @@ export default function LandingPage() {
             ].map((step, i) => (
               <div key={i} className="relative">
                 {i < 2 && (
-                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-brand-blue-300 to-brand-green-300 opacity-30" />
+                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-brand-green-300 opacity-30" />
                 )}
                 <div className="card p-8 text-center relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-brand-gradient mx-auto mb-6 flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-brand-green-600 mx-auto mb-6 flex items-center justify-center shadow-lg">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xs font-bold text-brand-blue-600 uppercase tracking-widest mb-2">Step {step.step}</div>
@@ -195,7 +195,7 @@ export default function LandingPage() {
                 </div>
                 <p className="text-slate-600 mb-6 leading-relaxed italic">"{testimonial.text}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white font-bold text-sm">
                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
@@ -210,7 +210,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section id="mentors" className="py-20 px-6 bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/20">
+      <section id="mentors" className="py-20 px-6 bg-slate-50">
         <div className="max-w-3xl mx-auto text-center">
           <div className="card p-12">
             <h2 className="section-heading mb-4">Ready to <span className="gradient-text">Propel</span> Your Career?</h2>
@@ -229,7 +229,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
-              <img src="/logo.jpg" alt="Propel" className="h-7 mb-4" />
+              <img src="/propel-logo.png" alt="Propel" className="h-7 mb-4" />
               <p className="font-semibold text-slate-900 mb-2">Professional Mentorship for Emergent Leaders</p>
               <p className="text-slate-400 text-sm leading-relaxed">
                 Empowering the next generation of professionals through structured mentorship and actionable private paths.

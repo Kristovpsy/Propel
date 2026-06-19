@@ -24,8 +24,7 @@ export default function MentorCard({ mentor, compact = false, matchScore }: Ment
       {/* Match score badge */}
       {matchPercent != null && matchPercent > 0 && (
         <div className="absolute top-3 right-3 z-10">
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-lg"
-               style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-lg bg-brand-green-600">
             <Sparkles className="w-3 h-3" />
             {matchPercent}% match
           </div>
@@ -45,7 +44,7 @@ export default function MentorCard({ mentor, compact = false, matchScore }: Ment
                 className={`${compact ? 'w-12 h-12' : 'w-14 h-14'} rounded-full object-cover ring-2 ring-white shadow-sm`}
               />
             ) : (
-              <div className={`${compact ? 'w-12 h-12' : 'w-14 h-14'} rounded-full bg-brand-gradient flex items-center justify-center text-white font-bold ${compact ? 'text-base' : 'text-lg'} ring-2 ring-white shadow-sm`}>
+              <div className={`${compact ? 'w-12 h-12' : 'w-14 h-14'} rounded-full bg-brand-green-600 flex items-center justify-center text-white font-bold ${compact ? 'text-base' : 'text-lg'} ring-2 ring-white shadow-sm`}>
                 {mentor.full_name?.charAt(0) || '?'}
               </div>
             )}

@@ -78,29 +78,32 @@ export default function MenteeProfilePage() {
         <div className="space-y-6">
           {/* Hero card */}
           <div className="bg-white rounded-2xl shadow-card border border-slate-100 overflow-hidden">
-            {/* Gradient banner */}
-            <div className="h-24 bg-brand-gradient opacity-90" />
+            {/* Solid banner */}
+            <div className="h-28 bg-brand-green-600" />
 
             <div className="px-8 pb-8">
-              {/* Avatar */}
-              <div className="flex items-end gap-5 -mt-12 mb-6">
-                {mentee.avatar_url ? (
-                  <img
-                    src={mentee.avatar_url}
-                    alt={mentee.full_name}
-                    className="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-lg"
-                  />
-                ) : (
-                  <div className="w-24 h-24 rounded-full bg-brand-gradient flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white shadow-lg">
-                    {mentee.full_name?.charAt(0) || '?'}
-                  </div>
-                )}
+              {/* Avatar overlapping banner */}
+              <div className="-mt-14 mb-5">
+                <div className="flex items-end gap-5">
+                  {mentee.avatar_url ? (
+                    <img
+                      src={mentee.avatar_url}
+                      alt={mentee.full_name}
+                      className="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-lg flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white shadow-lg flex-shrink-0">
+                      {mentee.full_name?.charAt(0) || '?'}
+                    </div>
+                  )}
+                </div>
 
-                <div className="pb-1.5">
+                {/* Name and meta — below the banner zone */}
+                <div className="mt-4">
                   <h1 className="text-2xl font-bold text-slate-900">
                     {mentee.full_name}
                   </h1>
-                  <div className="flex items-center gap-3 mt-1">
+                  <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                     <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-blue-50 text-brand-blue-600">
                       <Users className="w-3 h-3" />
                       {mentee.active_mentors} active mentor{mentee.active_mentors !== 1 ? 's' : ''}

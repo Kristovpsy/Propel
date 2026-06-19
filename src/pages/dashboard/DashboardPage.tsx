@@ -176,7 +176,7 @@ function MentorDashboard() {
                           className="w-10 h-10 rounded-full object-cover ring-2 ring-white"
                         />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold ring-2 ring-white">
+                        <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold ring-2 ring-white">
                           {mentee?.full_name?.charAt(0) || '?'}
                         </div>
                       )}
@@ -270,7 +270,7 @@ function MentorDashboard() {
                         className="w-10 h-10 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+                      <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
                         {mentee?.full_name?.charAt(0) || '?'}
                       </div>
                     )}
@@ -472,7 +472,7 @@ function MenteeDashboard() {
                         className="w-12 h-12 rounded-full object-cover ring-2 ring-white shadow-sm"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center text-white font-bold ring-2 ring-white shadow-sm">
+                      <div className="w-12 h-12 rounded-full bg-brand-green-600 flex items-center justify-center text-white font-bold ring-2 ring-white shadow-sm">
                         {mentor?.full_name?.charAt(0) || '?'}
                       </div>
                     )}
@@ -541,7 +541,7 @@ function MenteeDashboard() {
                         className="w-10 h-10 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+                      <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
                         {mentor.full_name?.charAt(0) || '?'}
                       </div>
                     )}

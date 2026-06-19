@@ -83,29 +83,32 @@ export default function MentorProfilePage() {
         <div className="space-y-6">
           {/* Hero card */}
           <div className="bg-white rounded-2xl shadow-card border border-slate-100 overflow-hidden">
-            {/* Gradient banner */}
-            <div className="h-24 bg-brand-gradient opacity-90" />
+            {/* Solid banner */}
+            <div className="h-28 bg-brand-green-600" />
 
             <div className="px-8 pb-8">
-              {/* Avatar (overlapping banner) */}
-              <div className="flex items-end gap-5 -mt-12 mb-6">
-                {mentor.avatar_url ? (
-                  <img
-                    src={mentor.avatar_url}
-                    alt={mentor.full_name}
-                    className="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-lg"
-                  />
-                ) : (
-                  <div className="w-24 h-24 rounded-full bg-brand-gradient flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white shadow-lg">
-                    {mentor.full_name?.charAt(0) || '?'}
-                  </div>
-                )}
+              {/* Avatar overlapping banner */}
+              <div className="-mt-14 mb-5">
+                <div className="flex items-end gap-5">
+                  {mentor.avatar_url ? (
+                    <img
+                      src={mentor.avatar_url}
+                      alt={mentor.full_name}
+                      className="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-lg flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white shadow-lg flex-shrink-0">
+                      {mentor.full_name?.charAt(0) || '?'}
+                    </div>
+                  )}
+                </div>
 
-                <div className="pb-1.5">
+                {/* Name and meta — below the banner zone */}
+                <div className="mt-4">
                   <h1 className="text-2xl font-bold text-slate-900">
                     {mentor.full_name}
                   </h1>
-                  <div className="flex items-center gap-3 mt-1">
+                  <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                     {/* Rating */}
                     {avgRating > 0 && (
                       <div className="flex items-center gap-1">
@@ -244,7 +247,7 @@ export default function MentorProfilePage() {
                             className="w-8 h-8 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-xs font-bold">
+                          <div className="w-8 h-8 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-xs font-bold">
                             {review.reviewer?.full_name?.charAt(0) || '?'}
                           </div>
                         )}

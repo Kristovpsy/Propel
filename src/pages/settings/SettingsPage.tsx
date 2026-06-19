@@ -34,7 +34,7 @@ export default function SettingsPage() {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <Settings className="w-5 h-5 text-white" />
           </div>
           Settings
@@ -186,7 +186,7 @@ function ProfileTab({
               className="w-20 h-20 rounded-full object-cover ring-4 ring-white shadow-lg"
             />
           ) : (
-            <div className="w-20 h-20 rounded-full bg-brand-gradient flex items-center justify-center text-white text-2xl font-bold ring-4 ring-white shadow-lg">
+            <div className="w-20 h-20 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-2xl font-bold ring-4 ring-white shadow-lg">
               {profile.full_name?.charAt(0) || '?'}
             </div>
           )}

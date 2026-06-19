@@ -38,10 +38,7 @@ export default {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
-      backgroundImage: {
-        'brand-gradient': 'linear-gradient(135deg, #2563eb 0%, #16a34a 100%)',
-        'brand-gradient-subtle': 'linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)',
-      },
+      /* Gradients removed — using solid green (primary) and blue (secondary) only */
       boxShadow: {
         'card': '0 2px 8px rgba(0,0,0,0.08)',
         'card-hover': '0 8px 24px rgba(0,0,0,0.12)',

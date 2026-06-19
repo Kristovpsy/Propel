@@ -96,7 +96,7 @@ export default function ExploreMentorsPage() {
       {/* Page header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <Compass className="w-5 h-5 text-white" />
           </div>
           Explore Mentors
@@ -113,8 +113,7 @@ export default function ExploreMentorsPage() {
         <div className="mb-8 animate-fade-in">
           {/* Section header */}
           <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-                 style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-brand-green-600">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div>

@@ -188,11 +188,11 @@ export default function MentorOnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-green-50/30 font-montserrat">
+    <div className="min-h-screen bg-slate-50 font-montserrat">
       <div className="max-w-2xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-8">
-          <img src="/logo.jpg" alt="Propel" className="h-7 mx-auto mb-6" />
+          <img src="/propel-logo.png" alt="Propel" className="h-7 mx-auto mb-6" />
           <h1 className="text-2xl font-bold text-slate-900 mb-1">{steps[step].title}</h1>
           <p className="text-slate-500 text-sm">{steps[step].subtitle}</p>
         </div>

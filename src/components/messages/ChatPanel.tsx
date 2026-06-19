@@ -86,7 +86,7 @@ export default function ChatPanel({
             className="w-9 h-9 rounded-full object-cover"
           />
         ) : (
-          <div className="w-9 h-9 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+          <div className="w-9 h-9 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
             {partnerName.charAt(0)}
           </div>
         )}
@@ -143,7 +143,7 @@ export default function ChatPanel({
                             className="w-7 h-7 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="w-7 h-7 rounded-full bg-brand-gradient flex items-center justify-center text-white text-[10px] font-bold">
+                          <div className="w-7 h-7 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-[10px] font-bold">
                             {msg.sender?.full_name?.charAt(0) || '?'}
                           </div>
                         )}

@@ -57,7 +57,7 @@ export default function DashboardLayout() {
           {/* Logo */}
           <div className="px-6 py-5 flex items-center justify-between border-b border-slate-100 dark:border-slate-700">
             <Link to="/dashboard">
-              <img src="/logo.jpg" alt="Propel" className="h-7" />
+              <img src="/propel-logo.png" alt="Propel" className="h-7" />
             </Link>
             <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-slate-600">
               <X className="w-5 h-5" />
@@ -112,7 +112,7 @@ export default function DashboardLayout() {
                   onClick={() => setProfileMenuOpen(!profileMenuOpen)}
                   className="flex items-center gap-3 p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-8 h-8 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
                     {profile?.full_name?.charAt(0) || '?'}
                   </div>
                   <div className="hidden sm:block text-left">

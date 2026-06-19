@@ -17,7 +17,7 @@ export default function AuthCallbackPage() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-gradient-subtle font-montserrat">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 font-montserrat">
       <div className="flex flex-col items-center gap-4">
         <div className="w-12 h-12 border-4 border-brand-green-200 border-t-brand-green-600 rounded-full animate-spin" />
         <p className="text-slate-500 font-medium">Completing sign in...</p>

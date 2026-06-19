@@ -67,7 +67,7 @@ export default function RatingsPage() {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <Star className="w-5 h-5 text-white" />
           </div>
           Ratings & Reviews
@@ -131,7 +131,7 @@ export default function RatingsPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold">
+                            <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-sm font-bold">
                               {partner.name.charAt(0)}
                             </div>
                           )}
@@ -185,7 +185,7 @@ export default function RatingsPage() {
                               className="w-8 h-8 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-xs font-bold">
+                            <div className="w-8 h-8 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-xs font-bold">
                               {review.reviewee?.full_name?.charAt(0) || '?'}
                             </div>
                           )}
@@ -241,7 +241,7 @@ export default function RatingsPage() {
                               className="w-8 h-8 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-xs font-bold">
+                            <div className="w-8 h-8 rounded-full bg-brand-green-600 flex items-center justify-center text-white text-xs font-bold">
                               {review.reviewer?.full_name?.charAt(0) || '?'}
                             </div>
                           )}

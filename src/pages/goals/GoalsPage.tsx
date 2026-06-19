@@ -94,7 +94,7 @@ export default function GoalsPage() {
       <div className="max-w-3xl mx-auto animate-fade-in">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
             Goals & Curriculum
@@ -124,7 +124,7 @@ export default function GoalsPage() {
       <div className="flex items-start justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
             Goals & Curriculum
@@ -225,7 +225,7 @@ export default function GoalsPage() {
               </div>
               <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-brand-gradient transition-all duration-700 ease-out"
+                  className="h-full rounded-full bg-brand-green-600 transition-all duration-700 ease-out"
                   style={{ width: `${overallProgress}%` }}
                 />
               </div>
