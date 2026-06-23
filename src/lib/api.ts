@@ -1,4 +1,10 @@
 import { supabase } from './supabase';
+import {
+  notifyConnectionRequest,
+  notifyConnectionStatus,
+  notifyNewMessage,
+  notifyEventInvitation,
+} from './email';
 import type {
   Profile,
   MentorProfile,
@@ -329,6 +335,15 @@ export async function sendConnectionRequest(
     .single();
 
   if (error) throw error;
+
+  // Fire-and-forget: notify the mentor via email
+  notifyConnectionRequest({
+    mentorId,
+    menteeId,
+    connectionId: data.id,
+    requestMessage,
+  });
+
   return data;
 }
 
@@ -344,6 +359,12 @@ export async function updateConnectionStatus(
     .single();
 
   if (error) throw error;
+
+  // Fire-and-forget: notify the mentee when accepted or rejected
+  if (status === 'active' || status === 'rejected') {
+    notifyConnectionStatus({ connectionId, status });
+  }
+
   return data;
 }
 
@@ -669,7 +690,8 @@ export async function sendMessage(
   type: 'dm' | 'group',
   channelId: string,
   content: string,
-  senderInfo?: { id: string; full_name: string; avatar_url: string | null }
+  senderInfo?: { id: string; full_name: string; avatar_url: string | null },
+  recipientId?: string
 ) {
   const payload: Record<string, unknown> = {
     sender_id: senderId,
@@ -696,20 +718,47 @@ export async function sendMessage(
   }
 
   // Enrich with sender info from local cache (passed in) or fetch if needed
-  if (senderInfo) {
-    return { ...data, sender: senderInfo };
+  const resolvedSender = senderInfo ?? (() => {
+    // will be fetched below
+    return null;
+  })();
+
+  if (!resolvedSender) {
+    const { data: senderProfile } = await supabase
+      .from('profiles')
+      .select('id, full_name, avatar_url')
+      .eq('id', senderId)
+      .single();
+
+    // Fire-and-forget email notification to recipient (DMs only)
+    if (type === 'dm' && recipientId) {
+      notifyNewMessage({
+        recipientId,
+        senderId,
+        senderName: senderProfile?.full_name || 'Your contact',
+        messagePreview: content,
+        connectionId: channelId,
+      });
+    }
+
+    return {
+      ...data,
+      sender: senderProfile || { id: senderId, full_name: 'You', avatar_url: null },
+    };
   }
 
-  const { data: senderProfile } = await supabase
-    .from('profiles')
-    .select('id, full_name, avatar_url')
-    .eq('id', senderId)
-    .single();
+  // Fire-and-forget email notification to recipient (DMs only)
+  if (type === 'dm' && recipientId) {
+    notifyNewMessage({
+      recipientId,
+      senderId,
+      senderName: resolvedSender.full_name || 'Your contact',
+      messagePreview: content,
+      connectionId: channelId,
+    });
+  }
 
-  return {
-    ...data,
-    sender: senderProfile || { id: senderId, full_name: 'You', avatar_url: null },
-  };
+  return { ...data, sender: resolvedSender };
 }
 
 export async function fetchConversations(userId: string, role: 'mentor' | 'mentee') {
@@ -841,6 +890,15 @@ export async function createEvent(eventData: {
     .single();
 
   if (error) throw error;
+
+  // Fire-and-forget: email the specific invitee for private events
+  if (eventData.invite_type === 'private' && eventData.invitee_id) {
+    notifyEventInvitation({
+      eventId: data.id,
+      recipientId: eventData.invitee_id,
+    });
+  }
+
   return data;
 }
 

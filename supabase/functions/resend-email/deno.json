@@ -1,0 +1,10 @@
+// deno.json
+{
+  "tasks": {
+    "start": {
+      "cmd": "deno run -A --unstable index.ts"
+    }
+  },
+  "importMap": "import_map.json",
+  "allow": ["env", "net"]
+}

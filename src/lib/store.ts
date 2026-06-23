@@ -45,3 +45,13 @@ export const useAuthStore = create<AuthState>((set) => ({
     unreadNotifications: 0,
   }),
 }));
+
+export const profileCache = new Map<string, Profile>();
+
+export const getProfile = (id: string) => profileCache.get(id);
+export const cacheProfile = (profile: Profile) => {
+  if (profile?.id) profileCache.set(profile.id, profile);
+};
+export const clearProfileCache = () => {
+  profileCache.clear();
+};

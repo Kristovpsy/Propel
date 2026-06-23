@@ -22,7 +22,7 @@ interface ChatMessage {
 }
 
 // Simple in-memory cache for sender profiles (avoids re-fetching)
-const senderCache = new Map<string, { id: string; full_name: string; avatar_url: string | null }>();
+const senderCache = profileCache; // alias to global profile cache
 
 export function useChat({ type, channelId, userId }: UseChatOptions) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -200,13 +200,27 @@ export function useChat({ type, channelId, userId }: UseChatOptions) {
       setIsSending(true);
 
       try {
-        // Pass cached sender info to avoid an extra DB fetch in sendMessage
-        const sentMsg = await sendMessageApi(userId, type, channelId, trimmed, currentUserSender);
+        // Determine recipientId for DM notifications
+        let recipientId: string | undefined;
+        if (type === 'dm') {
+          const { data: conn } = await supabase
+            .from('connections')
+            .select('mentor_id, mentee_id')
+            .eq('id', channelId)
+            .single();
+          if (conn) {
+            recipientId = userId === conn.mentor_id ? conn.mentee_id : conn.mentor_id;
+          }
+        }
+        // Pass cached sender info and recipientId to avoid extra DB fetch in sendMessage
+        const sentMsg = await sendMessageApi(userId, type, channelId, trimmed, currentUserSender, recipientId);
 
         // Cache sender info from the response
         if (sentMsg?.sender?.id) {
           senderCache.set(sentMsg.sender.id, sentMsg.sender);
         }
+
+
 
         // The Realtime subscription will handle replacing the optimistic message
         // with the real one. But if Realtime is slow/broken, we replace it here

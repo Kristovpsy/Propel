@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { supabase } from '../../lib/supabase';
+import { sendWelcomeEmail } from '../../lib/email';
 import { useAuthStore } from '../../lib/store';
 import { mentorProfileSchema, type MentorProfileFormData } from '../../lib/validators';
 import { Loader2, Plus, X, Upload, ChevronRight, ChevronLeft, Camera } from 'lucide-react';
@@ -169,14 +170,28 @@ export default function MentorOnboardingPage() {
       if (mentorError) throw mentorError;
 
       // Update local state
-      setProfile({
-        ...useAuthStore.getState().profile!,
-        avatar_url,
-        username: data.username,
-        gender: data.gender,
-        onboarding_complete: true,
+        setProfile({
+          ...useAuthStore.getState().profile!,
+          avatar_url,
+          username: data.username,
+          gender: data.gender,
+          onboarding_complete: true,
+        });
+        cacheProfile({
+          ...useAuthStore.getState().profile!,
+          avatar_url,
+          username: data.username,
+          gender: data.gender,
+          onboarding_complete: true,
+        });
+
+      // Fire-and-forget: send welcome email
+      sendWelcomeEmail({
+        userId: user.id,
+        email: user.email!,
+        fullName: useAuthStore.getState().profile?.full_name || '',
+        role: 'mentor',
       });
-      setMentorProfile(mentorData);
 
       navigate('/dashboard');
     } catch (err: unknown) {

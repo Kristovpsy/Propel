@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './components/auth/AuthProvider';
 import { ThemeProvider } from './components/ThemeProvider';
+import { AuthProvider } from './components/auth/AuthProvider';
 import { ProtectedRoute, PublicOnlyRoute } from './components/auth/ProtectedRoute';
+import { ProfileProvider } from './lib/useProfileStore';
 import ToastContainer from './components/Toast';
 
 // Lazy-loaded pages (route-level code splitting)
@@ -42,67 +43,69 @@ function PageLoader() {
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider>
+    <ThemeProvider>
       <AuthProvider>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            {/* Public routes */}
-            <Route path="/" element={
-              <PublicOnlyRoute>
-                <LandingPage />
-              </PublicOnlyRoute>
-            } />
+        <ProfileProvider>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* Public routes */}
+              <Route path="/" element={
+                <PublicOnlyRoute>
+                  <LandingPage />
+                </PublicOnlyRoute>
+              } />
 
-            {/* Auth routes */}
-            <Route element={
-              <PublicOnlyRoute>
-                <AuthLayout />
-              </PublicOnlyRoute>
-            }>
-              <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-              <Route path="/verify-email" element={<VerifyEmailPage />} />
-            </Route>
+              {/* Auth routes */}
+              <Route element={
+                <PublicOnlyRoute>
+                  <AuthLayout />
+                </PublicOnlyRoute>
+              }>
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                <Route path="/verify-email" element={<VerifyEmailPage />} />
+              </Route>
 
-            {/* Auth callback (no guard — needs to process the redirect) */}
-            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+              {/* Auth callback */}
+              <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
-            {/* Onboarding (authenticated but no onboarding requirement) */}
-            <Route path="/onboarding/mentor" element={
-              <ProtectedRoute requireOnboarding={false}>
-                <MentorOnboardingPage />
-              </ProtectedRoute>
-            } />
-            <Route path="/onboarding/mentee" element={
-              <ProtectedRoute requireOnboarding={false}>
-                <MenteeOnboardingPage />
-              </ProtectedRoute>
-            } />
+              {/* Onboarding */}
+              <Route path="/onboarding/mentor" element={
+                <ProtectedRoute requireOnboarding={false}>
+                  <MentorOnboardingPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/onboarding/mentee" element={
+                <ProtectedRoute requireOnboarding={false}>
+                  <MenteeOnboardingPage />
+                </ProtectedRoute>
+              } />
 
-            {/* Dashboard routes (fully protected) */}
-            <Route element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }>
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/explore" element={<ExploreMentorsPage />} />
-              <Route path="/mentor/:id" element={<MentorProfilePage />} />
-              <Route path="/mentee/:id" element={<MenteeProfilePage />} />
-              <Route path="/goals" element={<GoalsPage />} />
-              <Route path="/messages" element={<MessagesPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/ratings" element={<RatingsPage />} />
-              <Route path="/settings" element={<SettingsPage />} />
-            </Route>
-          </Routes>
-        </Suspense>
+              {/* Dashboard routes */}
+              <Route element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }>
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/explore" element={<ExploreMentorsPage />} />
+                <Route path="/mentor/:id" element={<MentorProfilePage />} />
+                <Route path="/mentee/:id" element={<MenteeProfilePage />} />
+                <Route path="/goals" element={<GoalsPage />} />
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/ratings" element={<RatingsPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </ProfileProvider>
       </AuthProvider>
-      </ThemeProvider>
-      <ToastContainer />
-    </BrowserRouter>
+    </ThemeProvider>
+    <ToastContainer />
+  </BrowserRouter>
   );
 }
 
