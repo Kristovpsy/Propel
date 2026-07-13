@@ -208,7 +208,7 @@ export default function MentorOnboardingPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <img src="/propel-logo.png" alt="Propel" className="h-7 mx-auto mb-6" />
-          <h1 className="text-2xl font-bold text-slate-900 mb-1">{steps[step].title}</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{steps[step].title}</h1>
           <p className="text-slate-500 text-sm">{steps[step].subtitle}</p>
         </div>
 
@@ -429,7 +429,7 @@ export default function MentorOnboardingPage() {
                         }`}>
                           {watch('mentorship_style') === style && <div className="w-2 h-2 rounded-full bg-brand-green-500" />}
                         </div>
-                        <span className="text-sm font-medium text-slate-700">{style}</span>
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{style}</span>
                       </label>
                     ))}
                   </div>

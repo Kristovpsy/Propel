@@ -52,13 +52,13 @@ export default function CalendarStrip({
     <div className="bg-white rounded-2xl shadow-card border border-slate-100 p-4">
       {/* Month + navigation */}
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-bold text-slate-900">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white">
           {monthNames[selectedDate.getMonth()]} {selectedDate.getFullYear()}
         </h3>
         <div className="flex items-center gap-1">
           <button
             onClick={() => navigate(-1)}
-            className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -70,7 +70,7 @@ export default function CalendarStrip({
           </button>
           <button
             onClick={() => navigate(1)}
-            className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -94,7 +94,7 @@ export default function CalendarStrip({
                   ? 'bg-brand-blue-600 text-white shadow-md'
                   : isToday
                     ? 'bg-brand-blue-50 text-brand-blue-700 ring-1 ring-brand-blue-200'
-                    : 'hover:bg-slate-50 text-slate-600'
+                    : 'hover:bg-slate-50 text-slate-600 dark:text-slate-400'
               }`}
             >
               <span

@@ -49,7 +49,7 @@ export default function MenteeProfilePage() {
         <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
           <XCircle className="w-8 h-8 text-red-400" />
         </div>
-        <h2 className="text-lg font-bold text-slate-900 mb-1">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
           Mentee not found
         </h2>
         <p className="text-sm text-slate-500 mb-4">
@@ -67,7 +67,7 @@ export default function MenteeProfilePage() {
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 font-medium mb-6 transition-colors"
+        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 dark:text-slate-300 font-medium mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
@@ -100,7 +100,7 @@ export default function MenteeProfilePage() {
 
                 {/* Name and meta — below the banner zone */}
                 <div className="mt-4">
-                  <h1 className="text-2xl font-bold text-slate-900">
+                  <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
                     {mentee.full_name}
                   </h1>
                   <div className="flex items-center gap-3 mt-1.5 flex-wrap">
@@ -120,18 +120,18 @@ export default function MenteeProfilePage() {
 
               {/* Aspirations */}
               <div className="mb-6">
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-brand-blue-500" />
                   Aspirations
                 </h2>
-                <p className="text-slate-600 leading-relaxed whitespace-pre-line">
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">
                   {mp?.aspirations || 'No aspirations provided.'}
                 </p>
               </div>
 
               {/* Learning Goals */}
               <div className="mb-6">
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2">
                   <Target className="w-4 h-4 text-brand-green-500" />
                   Learning Goals
                 </h2>
@@ -147,7 +147,7 @@ export default function MenteeProfilePage() {
                             {i + 1}
                           </span>
                         </div>
-                        <p className="text-sm text-slate-700 font-medium">
+                        <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">
                           {goal}
                         </p>
                       </div>
@@ -160,7 +160,7 @@ export default function MenteeProfilePage() {
 
               {/* Desired Skills */}
               <div>
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-brand-blue-500" />
                   Desired Skills
                 </h2>
@@ -204,7 +204,7 @@ export default function MenteeProfilePage() {
                 <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-3">
                   <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
-                <p className="font-bold text-slate-900 text-sm mb-1">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">
                   Your Mentee
                 </p>
                 <p className="text-xs text-slate-500 mb-4">
@@ -231,7 +231,7 @@ export default function MenteeProfilePage() {
                 <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-3">
                   <Send className="w-6 h-6 text-amber-600" />
                 </div>
-                <p className="font-bold text-slate-900 text-sm mb-1">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">
                   Request Pending
                 </p>
                 <p className="text-xs text-slate-500">
@@ -255,19 +255,19 @@ export default function MenteeProfilePage() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Active Mentors</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {mentee.active_mentors}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Goals</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {(mp?.learning_goals || []).length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Skills</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {(mp?.desired_skills || []).length} areas
                 </span>
               </div>

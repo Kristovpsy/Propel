@@ -74,20 +74,10 @@ export async function notifyEventInvitation(params: {
   await invokeEmailFunction('send-event-invitation-email', params);
 }
 
-// Generic Resend email sender
-export async function sendResendEmail(payload: { to: string; subject: string; html: string }): Promise<void> {
-  await invokeEmailFunction('resend-email', payload);
-}
-
 /**
  * Send a welcome email to a new user after onboarding.
  */
-export async function sendWelcomeEmail(params: { userId: string; email: string; fullName: string; role: 'mentor' | 'mentee'; }): Promise<void> {
-  const { email, fullName, role } = params;
-  const subject = role === 'mentor' ? 'Welcome to Propel, Mentor!' : 'Welcome to Propel, Mentee!';
-  const html = `<p>Hi ${fullName},</p><p>Welcome to Propel as a ${role}. We're excited to have you on board!</p>`;
-  await sendResendEmail({ to: email, subject, html });
-}
+export async function sendWelcomeEmail(params: {
   userId: string;
   email: string;
   fullName: string;

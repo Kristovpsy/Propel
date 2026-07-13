@@ -72,13 +72,13 @@ export default function AddGoalModal({
               <Target className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-slate-900">New Goal</h2>
+              <h2 className="font-bold text-slate-900 dark:text-white">New Goal</h2>
               <p className="text-xs text-slate-500">Define what you want to achieve</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-colors p-1.5 rounded-lg hover:bg-slate-100"
+            className="text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors p-1.5 rounded-lg hover:bg-slate-100"
           >
             <X className="w-5 h-5" />
           </button>

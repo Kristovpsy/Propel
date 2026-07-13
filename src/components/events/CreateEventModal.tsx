@@ -95,7 +95,7 @@ export default function CreateEventModal({
               <Calendar className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-slate-900">Create Event</h2>
+              <h2 className="font-bold text-slate-900 dark:text-white">Create Event</h2>
               <p className="text-xs text-slate-500">
                 Schedule a mentorship session
               </p>
@@ -103,7 +103,7 @@ export default function CreateEventModal({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100"
+            className="text-slate-400 hover:text-slate-600 dark:text-slate-400 p-1.5 rounded-lg hover:bg-slate-100"
           >
             <X className="w-5 h-5" />
           </button>

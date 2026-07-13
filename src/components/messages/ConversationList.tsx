@@ -83,7 +83,7 @@ export default function ConversationList({
             <div className="flex-1 min-w-0">
               <p
                 className={`text-sm font-semibold truncate ${
-                  isActive ? 'text-brand-blue-700' : 'text-slate-800'
+                  isActive ? 'text-brand-blue-700' : 'text-slate-800 dark:text-slate-200'
                 }`}
               >
                 {conv.name}

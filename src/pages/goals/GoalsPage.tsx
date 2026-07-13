@@ -93,7 +93,7 @@ export default function GoalsPage() {
     return (
       <div className="max-w-3xl mx-auto animate-fade-in">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
@@ -105,7 +105,7 @@ export default function GoalsPage() {
           <div className="w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Users className="w-10 h-10 text-slate-300" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-1">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
             No active connections
           </h3>
           <p className="text-sm text-slate-500 max-w-xs mx-auto">
@@ -123,7 +123,7 @@ export default function GoalsPage() {
       {/* Page header */}
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
@@ -172,8 +172,8 @@ export default function GoalsPage() {
       {activeConnections.length === 1 && (
         <div className="bg-white rounded-2xl shadow-card border border-slate-100 p-4 mb-6 flex items-center gap-3">
           <BookOpen className="w-5 h-5 text-brand-blue-500" />
-          <span className="text-sm text-slate-600">
-            Curriculum with <span className="font-semibold text-slate-900">{getPartnerName(activeConnections[0])}</span>
+          <span className="text-sm text-slate-600 dark:text-slate-400">
+            Curriculum with <span className="font-semibold text-slate-900 dark:text-white">{getPartnerName(activeConnections[0])}</span>
           </span>
         </div>
       )}
@@ -190,7 +190,7 @@ export default function GoalsPage() {
           <div className="w-16 h-16 bg-brand-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Target className="w-8 h-8 text-brand-blue-600" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-1">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
             Start Your Curriculum
           </h3>
           <p className="text-sm text-slate-500 max-w-sm mx-auto mb-6">
@@ -216,7 +216,7 @@ export default function GoalsPage() {
           {totalMilestones > 0 && (
             <div className="bg-white rounded-2xl shadow-card border border-slate-100 p-6 mb-6">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="font-bold text-slate-900 text-sm">
+                <h2 className="font-bold text-slate-900 dark:text-white text-sm">
                   Overall Progress
                 </h2>
                 <span className="text-sm font-bold text-brand-blue-600">

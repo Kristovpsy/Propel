@@ -90,9 +90,9 @@ export interface Connection {
   request_message: string;
   created_at: string;
   updated_at: string;
-  // Joined data
-  mentor?: Profile & { mentor_profile?: MentorProfile };
-  mentee?: Profile & { mentee_profile?: MenteeProfile };
+  // Joined data (shape matches Supabase's select with nested !inner joins)
+  mentor?: Profile & { mentor_profiles: MentorProfile[] };
+  mentee?: Profile & { mentee_profiles: MenteeProfile[] };
 }
 
 export interface Message {

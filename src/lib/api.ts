@@ -43,8 +43,13 @@ export async function fetchMentors(filters: MentorSearchFilters = {}) {
     .eq('onboarding_complete', true);
 
   if (filters.search) {
+    // Escape PostgREST / SQL LIKE special characters to prevent unexpected filter behavior
+    const sanitized = filters.search
+      .replace(/\\/g, '\\\\')
+      .replace(/%/g, '\\%')
+      .replace(/_/g, '\\_');
     query = query.or(
-      `full_name.ilike.%${filters.search}%,mentor_profiles.bio.ilike.%${filters.search}%`
+      `full_name.ilike.%${sanitized}%,mentor_profiles.bio.ilike.%${sanitized}%`
     );
   }
 

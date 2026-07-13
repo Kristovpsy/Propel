@@ -66,7 +66,7 @@ export default function RatingsPage() {
     <div className="animate-fade-in max-w-3xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <Star className="w-5 h-5 text-white" />
           </div>
@@ -86,7 +86,7 @@ export default function RatingsPage() {
             className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === tab.key
                 ? 'bg-brand-blue-600 text-white shadow-sm'
-                : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+                : 'text-slate-500 hover:text-slate-700 dark:text-slate-300 hover:bg-slate-50'
             }`}
           >
             {tab.label}
@@ -95,7 +95,7 @@ export default function RatingsPage() {
                 className={`min-w-[18px] h-[18px] rounded-full text-[10px] font-bold flex items-center justify-center px-1 ${
                   activeTab === tab.key
                     ? 'bg-white/20 text-white'
-                    : 'bg-slate-200 text-slate-600'
+                    : 'bg-slate-200 text-slate-600 dark:text-slate-400'
                 }`}
               >
                 {tab.count}
@@ -136,7 +136,7 @@ export default function RatingsPage() {
                             </div>
                           )}
                           <div>
-                            <p className="font-semibold text-slate-800 text-sm">
+                            <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                               {partner.name}
                             </p>
                             <p className="text-[11px] text-slate-400">
@@ -190,7 +190,7 @@ export default function RatingsPage() {
                             </div>
                           )}
                           <div>
-                            <p className="font-semibold text-slate-800 text-sm">
+                            <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                               {review.reviewee?.full_name}
                             </p>
                             <p className="text-[10px] text-slate-400">
@@ -204,7 +204,7 @@ export default function RatingsPage() {
                         <StarRating value={review.score} size="sm" readonly />
                       </div>
                       {review.comment && (
-                        <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                           {review.comment}
                         </p>
                       )}
@@ -246,7 +246,7 @@ export default function RatingsPage() {
                             </div>
                           )}
                           <div>
-                            <p className="font-semibold text-slate-800 text-sm">
+                            <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                               {review.reviewer?.full_name}
                             </p>
                             <p className="text-[10px] text-slate-400">
@@ -260,7 +260,7 @@ export default function RatingsPage() {
                         <StarRating value={review.score} size="sm" readonly />
                       </div>
                       {review.comment && (
-                        <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                           {review.comment}
                         </p>
                       )}

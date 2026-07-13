@@ -52,7 +52,7 @@ export default function VerifyEmailPage() {
         </div>
       </div>
 
-      <h1 className="text-2xl font-bold text-slate-900 mb-2">Verify Your Email</h1>
+      <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Verify Your Email</h1>
       <p className="text-slate-500 mb-2">
         We've sent a verification link to your email address.
       </p>

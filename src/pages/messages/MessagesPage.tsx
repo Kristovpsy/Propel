@@ -68,7 +68,7 @@ export default function MessagesPage() {
           }`}
         >
           <div className="p-4 border-b border-slate-100">
-            <h1 className="font-bold text-slate-900 flex items-center gap-2">
+            <h1 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <MessageCircle className="w-5 h-5 text-brand-blue-500" />
               Messages
             </h1>

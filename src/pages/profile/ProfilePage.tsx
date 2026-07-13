@@ -181,7 +181,7 @@ function BasicInfoEdit({ profile, onSave, onCancel }: {
     <div className="card p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white">Edit Basic Information</h2>
-        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600 dark:text-slate-400"><X className="w-5 h-5" /></button>
       </div>
       <hr className="border-slate-100 dark:border-slate-700 mb-5" />
       <div className="space-y-5">
@@ -251,7 +251,7 @@ function MentorProfessionalEdit({ mentorProfile, profile, onSave, onCancel }: {
     <div className="card p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white">Edit Professional Information</h2>
-        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600 dark:text-slate-400"><X className="w-5 h-5" /></button>
       </div>
       <hr className="border-slate-100 dark:border-slate-700 mb-5" />
       <div className="space-y-5">
@@ -306,7 +306,7 @@ function MenteeProfessionalEdit({ menteeProfile, profile, onSave, onCancel }: {
     <div className="card p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white">Edit Professional Information</h2>
-        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+        <button onClick={onCancel} className="text-slate-400 hover:text-slate-600 dark:text-slate-400"><X className="w-5 h-5" /></button>
       </div>
       <hr className="border-slate-100 dark:border-slate-700 mb-5" />
       <div className="space-y-5">

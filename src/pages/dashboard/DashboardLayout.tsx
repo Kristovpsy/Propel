@@ -59,7 +59,7 @@ export default function DashboardLayout() {
             <Link to="/dashboard">
               <img src="/propel-logo.png" alt="Propel" className="h-7" />
             </Link>
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-slate-600">
+            <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-slate-600 dark:text-slate-400">
               <X className="w-5 h-5" />
             </button>
           </div>

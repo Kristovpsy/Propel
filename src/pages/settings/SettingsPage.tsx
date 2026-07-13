@@ -365,7 +365,7 @@ function NotificationsTab({ profile }: { profile: Profile }) {
     <div className="space-y-6">
       {sections.map((section) => (
         <div key={section.title} className="card p-6">
-          <h3 className="font-bold text-slate-900 text-sm mb-0.5">
+          <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-0.5">
             {section.title}
           </h3>
           <p className="text-xs text-slate-400 mb-4">{section.description}</p>
@@ -380,7 +380,7 @@ function NotificationsTab({ profile }: { profile: Profile }) {
                 key={item.key}
                 className="flex items-center justify-between cursor-pointer group"
               >
-                <span className="text-sm text-slate-600 group-hover:text-slate-800 transition-colors">
+                <span className="text-sm text-slate-600 group-hover:text-slate-800 dark:text-slate-200 transition-colors">
                   {item.label}
                 </span>
                 <div

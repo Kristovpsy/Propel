@@ -71,12 +71,12 @@ export default function ReviewModal({
       <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up overflow-hidden">
         {/* Header */}
         <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
-          <h2 className="font-bold text-lg text-slate-900">
+          <h2 className="font-bold text-lg text-slate-900 dark:text-white">
             Leave a Review
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100"
+            className="text-slate-400 hover:text-slate-600 dark:text-slate-400 p-1.5 rounded-lg hover:bg-slate-100"
           >
             <X className="w-5 h-5" />
           </button>
@@ -87,7 +87,7 @@ export default function ReviewModal({
             <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
               <CheckCircle className="w-8 h-8 text-emerald-600" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
               Review Submitted!
             </h3>
             <p className="text-sm text-slate-500">
@@ -111,7 +111,7 @@ export default function ReviewModal({
                   </div>
                 )}
                 <div>
-                  <p className="font-semibold text-slate-900">
+                  <p className="font-semibold text-slate-900 dark:text-white">
                     {revieweeName}
                   </p>
                   <p className="text-xs text-slate-400">

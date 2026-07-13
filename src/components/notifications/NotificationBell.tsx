@@ -29,7 +29,7 @@ export default function NotificationBell() {
       {/* Bell button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-lg hover:bg-slate-100"
+        className="relative text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors p-2 rounded-lg hover:bg-slate-100"
       >
         <Bell className="w-5 h-5" />
         {unreadNotifications > 0 && (
@@ -44,7 +44,7 @@ export default function NotificationBell() {
         <div className="absolute right-0 top-12 z-50 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden animate-fade-in">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
-            <h3 className="font-bold text-slate-900 text-sm">Notifications</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Notifications</h3>
             {unreadNotifications > 0 && (
               <button
                 onClick={markAllRead}

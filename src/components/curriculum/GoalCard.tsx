@@ -42,7 +42,7 @@ export default function GoalCard({
   const progress = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
 
   const statusColors = {
-    not_started: 'bg-slate-100 text-slate-600',
+    not_started: 'bg-slate-100 text-slate-600 dark:text-slate-400',
     in_progress: 'bg-brand-blue-100 text-brand-blue-700',
     completed: 'bg-emerald-100 text-emerald-700',
   };
@@ -123,7 +123,7 @@ export default function GoalCard({
         onClick={() => setExpanded(!expanded)}
         className="flex items-center gap-3 p-5 cursor-pointer select-none hover:bg-slate-50/50 transition-colors"
       >
-        <button className="text-slate-400 hover:text-slate-600 transition-colors flex-shrink-0">
+        <button className="text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors flex-shrink-0">
           {expanded ? (
             <ChevronDown className="w-5 h-5" />
           ) : (
@@ -133,7 +133,7 @@ export default function GoalCard({
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="font-bold text-slate-900 text-sm truncate">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm truncate">
               {goal.title}
             </h3>
             <span
@@ -181,7 +181,7 @@ export default function GoalCard({
                 className="transition-all duration-500"
               />
             </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-slate-600">
+            <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-slate-600 dark:text-slate-400">
               {Math.round(progress)}%
             </span>
           </div>
@@ -202,7 +202,7 @@ export default function GoalCard({
                 className={`text-[11px] font-semibold px-2.5 py-1 rounded-full transition-all ${
                   goal.status === status
                     ? statusColors[status]
-                    : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
+                    : 'text-slate-400 hover:text-slate-600 dark:text-slate-400 hover:bg-slate-100'
                 }`}
               >
                 {statusLabels[status]}
@@ -243,7 +243,7 @@ export default function GoalCard({
                   className={`flex-1 text-sm transition-all ${
                     milestone.completed
                       ? 'text-slate-400 line-through'
-                      : 'text-slate-700'
+                      : 'text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   {milestone.title}
@@ -302,7 +302,7 @@ export default function GoalCard({
                 </button>
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-700 px-2 py-1 rounded-lg hover:bg-slate-100"
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-300 px-2 py-1 rounded-lg hover:bg-slate-100"
                 >
                   Cancel
                 </button>

@@ -71,7 +71,7 @@ function MentorDashboard() {
     <div className="animate-fade-in">
       {/* Greeting */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 mb-1">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
           Welcome back,{' '}
           <span className="gradient-text">
             {profile?.full_name?.split(' ')[0]}
@@ -137,7 +137,7 @@ function MentorDashboard() {
                 />
               </div>
             </div>
-            <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
             <p className="text-xs text-slate-400 font-medium">{stat.label}</p>
           </div>
         ))}
@@ -148,7 +148,7 @@ function MentorDashboard() {
         {/* Pending Requests */}
         <div className="card p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-slate-900">Pending Requests</h2>
+            <h2 className="font-bold text-slate-900 dark:text-white">Pending Requests</h2>
             <span className="badge-blue">{pendingRequests.length} pending</span>
           </div>
 
@@ -181,7 +181,7 @@ function MentorDashboard() {
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-slate-900 text-sm truncate">
+                        <p className="font-semibold text-slate-900 dark:text-white text-sm truncate">
                           {mentee?.full_name || 'Unknown'}
                         </p>
                         {menteeProfile?.aspirations && (
@@ -201,7 +201,7 @@ function MentorDashboard() {
                     {/* Request message */}
                     {conn.request_message && (
                       <div className="bg-white rounded-lg p-3 mb-3 border border-slate-100">
-                        <p className="text-xs text-slate-600 italic leading-relaxed">
+                        <p className="text-xs text-slate-600 dark:text-slate-400 italic leading-relaxed">
                           "{conn.request_message}"
                         </p>
                       </div>
@@ -242,7 +242,7 @@ function MentorDashboard() {
         {/* Active Mentees */}
         <div className="card p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-slate-900">Your Mentees</h2>
+            <h2 className="font-bold text-slate-900 dark:text-white">Your Mentees</h2>
             <span className="badge-green">
               {activeMentees.length} active
             </span>
@@ -275,7 +275,7 @@ function MentorDashboard() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-slate-800 text-sm truncate group-hover:text-brand-blue-600 transition-colors">
+                      <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm truncate group-hover:text-brand-blue-600 transition-colors">
                         {mentee?.full_name || 'Unknown'}
                       </p>
                       <p className="text-xs text-slate-400">
@@ -348,7 +348,7 @@ function MenteeDashboard() {
     <div className="animate-fade-in">
       {/* Greeting */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 mb-1">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
           Welcome back,{' '}
           <span className="gradient-text">
             {profile?.full_name?.split(' ')[0]}
@@ -414,7 +414,7 @@ function MenteeDashboard() {
                 />
               </div>
             </div>
-            <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
             <p className="text-xs text-slate-400 font-medium">{stat.label}</p>
           </div>
         ))}
@@ -443,7 +443,7 @@ function MenteeDashboard() {
         {/* Active Mentor */}
         <div className="card p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-slate-900">Your Mentor{activeConnections.length > 1 ? 's' : ''}</h2>
+            <h2 className="font-bold text-slate-900 dark:text-white">Your Mentor{activeConnections.length > 1 ? 's' : ''}</h2>
             {activeConnections.length > 0 && (
               <span className="badge-green">{activeConnections.length} active</span>
             )}
@@ -477,7 +477,7 @@ function MenteeDashboard() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-slate-800 text-sm group-hover:text-brand-blue-600 transition-colors truncate">
+                      <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm group-hover:text-brand-blue-600 transition-colors truncate">
                         {mentor?.full_name}
                       </p>
                       <p className="text-xs text-slate-400">
@@ -515,7 +515,7 @@ function MenteeDashboard() {
         {/* Recommended Mentors */}
         <div className="card p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-slate-900">Recommended for You</h2>
+            <h2 className="font-bold text-slate-900 dark:text-white">Recommended for You</h2>
             <Link
               to="/explore"
               className="text-xs text-brand-blue-600 font-medium hover:underline flex items-center gap-1"
@@ -546,7 +546,7 @@ function MenteeDashboard() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-slate-800 text-sm truncate group-hover:text-brand-blue-600 transition-colors">
+                      <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm truncate group-hover:text-brand-blue-600 transition-colors">
                         {mentor.full_name}
                       </p>
                       <div className="flex items-center gap-2 flex-wrap">

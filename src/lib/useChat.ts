@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from './supabase';
 import { fetchMessages, sendMessage as sendMessageApi } from './api';
+import { profileCache } from './store';
 import { useToastStore } from './useToast';
 
 interface UseChatOptions {

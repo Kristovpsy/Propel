@@ -57,7 +57,7 @@ export default function MentorCard({ mentor, compact = false, matchScore }: Ment
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className={`font-bold text-slate-900 group-hover:text-brand-blue-600 transition-colors truncate ${compact ? 'text-sm' : 'text-base'}`}>
+            <h3 className={`font-bold text-slate-900 dark:text-white group-hover:text-brand-blue-600 transition-colors truncate ${compact ? 'text-sm' : 'text-base'}`}>
               {mentor.full_name}
             </h3>
 
@@ -132,7 +132,7 @@ export default function MentorCard({ mentor, compact = false, matchScore }: Ment
         {!compact && mp?.mentorship_style && (
           <div className="mt-3 pt-3 border-t border-slate-100">
             <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Style: </span>
-            <span className="text-xs text-slate-600 font-medium">{mp.mentorship_style}</span>
+            <span className="text-xs text-slate-600 dark:text-slate-400 font-medium">{mp.mentorship_style}</span>
           </div>
         )}
       </div>

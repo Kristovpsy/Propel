@@ -51,7 +51,7 @@ export default function NotificationItem({
 }: NotificationItemProps) {
   const navigate = useNavigate();
   const Icon = ICON_MAP[notification.type] || Bell;
-  const colorClass = COLOR_MAP[notification.type] || 'bg-slate-100 text-slate-600';
+  const colorClass = COLOR_MAP[notification.type] || 'bg-slate-100 text-slate-600 dark:text-slate-400';
 
   function handleClick() {
     if (!notification.is_read) {
@@ -80,8 +80,8 @@ export default function NotificationItem({
         <p
           className={`text-sm leading-snug ${
             notification.is_read
-              ? 'text-slate-600'
-              : 'text-slate-900 font-semibold'
+              ? 'text-slate-600 dark:text-slate-400'
+              : 'text-slate-900 dark:text-white font-semibold'
           }`}
         >
           {notification.title}

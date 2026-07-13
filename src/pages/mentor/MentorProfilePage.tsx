@@ -54,7 +54,7 @@ export default function MentorProfilePage() {
         <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
           <XCircle className="w-8 h-8 text-red-400" />
         </div>
-        <h2 className="text-lg font-bold text-slate-900 mb-1">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
           Mentor not found
         </h2>
         <p className="text-sm text-slate-500 mb-4">
@@ -72,7 +72,7 @@ export default function MentorProfilePage() {
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 font-medium mb-6 transition-colors"
+        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 dark:text-slate-300 font-medium mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
@@ -105,7 +105,7 @@ export default function MentorProfilePage() {
 
                 {/* Name and meta — below the banner zone */}
                 <div className="mt-4">
-                  <h1 className="text-2xl font-bold text-slate-900">
+                  <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
                     {mentor.full_name}
                   </h1>
                   <div className="flex items-center gap-3 mt-1.5 flex-wrap">
@@ -150,18 +150,18 @@ export default function MentorProfilePage() {
 
               {/* Bio */}
               <div className="mb-6">
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2 flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-brand-blue-500" />
                   About
                 </h2>
-                <p className="text-slate-600 leading-relaxed whitespace-pre-line">
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">
                   {mp?.bio || 'No bio provided.'}
                 </p>
               </div>
 
               {/* Expertise tags */}
               <div className="mb-6">
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2">
                   <Shield className="w-4 h-4 text-brand-green-500" />
                   Expertise
                 </h2>
@@ -180,7 +180,7 @@ export default function MentorProfilePage() {
               {/* Mentorship style */}
               {mp?.mentorship_style && (
                 <div className="mb-6">
-                  <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">
+                  <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">
                     Mentorship Style
                   </h2>
                   <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-green-50 border border-brand-green-100">
@@ -194,7 +194,7 @@ export default function MentorProfilePage() {
               {/* Work history */}
               {workHistory.length > 0 && (
                 <div>
-                  <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Briefcase className="w-4 h-4 text-slate-400" />
                     Experience
                   </h2>
@@ -208,7 +208,7 @@ export default function MentorProfilePage() {
                           <Briefcase className="w-4 h-4 text-slate-400" />
                         </div>
                         <div>
-                          <p className="font-semibold text-slate-800 text-sm">
+                          <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                             {entry.role}
                           </p>
                           <p className="text-slate-500 text-xs">
@@ -226,7 +226,7 @@ export default function MentorProfilePage() {
 
           {/* Reviews section */}
           <div className="bg-white rounded-2xl shadow-card border border-slate-100 p-8">
-            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
               <Star className="w-4 h-4 text-amber-400" />
               Reviews ({reviews.length})
             </h2>
@@ -252,7 +252,7 @@ export default function MentorProfilePage() {
                           </div>
                         )}
                         <div>
-                          <p className="font-semibold text-slate-800 text-sm">
+                          <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                             {review.reviewer?.full_name}
                           </p>
                           <p className="text-[11px] text-slate-400">
@@ -278,7 +278,7 @@ export default function MentorProfilePage() {
                       </div>
                     </div>
                     {review.comment && (
-                      <p className="text-sm text-slate-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                         {review.comment}
                       </p>
                     )}
@@ -319,7 +319,7 @@ export default function MentorProfilePage() {
                 <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-3">
                   <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
-                <p className="font-bold text-slate-900 text-sm mb-1">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">
                   Your Mentor
                 </p>
                 <p className="text-xs text-slate-500 mb-4">
@@ -337,7 +337,7 @@ export default function MentorProfilePage() {
                 <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-3">
                   <Clock className="w-6 h-6 text-amber-600" />
                 </div>
-                <p className="font-bold text-slate-900 text-sm mb-1">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">
                   Request Pending
                 </p>
                 <p className="text-xs text-slate-500">
@@ -349,7 +349,7 @@ export default function MentorProfilePage() {
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-3">
                   <Users className="w-6 h-6 text-red-600" />
                 </div>
-                <p className="font-bold text-slate-900 text-sm mb-1">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">
                   At Capacity
                 </p>
                 <p className="text-xs text-slate-500">
@@ -358,7 +358,7 @@ export default function MentorProfilePage() {
               </div>
             ) : (
               <>
-                <p className="font-bold text-slate-900 text-sm mb-2">
+                <p className="font-bold text-slate-900 dark:text-white text-sm mb-2">
                   Interested in mentorship?
                 </p>
                 <p className="text-xs text-slate-500 mb-4">
@@ -384,25 +384,25 @@ export default function MentorProfilePage() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Mentees</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {mp?.current_count || 0}/{mp?.max_capacity || 5}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Rating</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {avgRating > 0 ? `${avgRating.toFixed(1)} / 5.0` : '—'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Reviews</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {reviews.length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-500">Expertise</span>
-                <span className="text-sm font-bold text-slate-900">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   {(mp?.expertise_tags || []).length} areas
                 </span>
               </div>

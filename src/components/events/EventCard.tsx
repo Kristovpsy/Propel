@@ -85,7 +85,7 @@ export default function EventCard({
                 </span>
               )}
             </div>
-            <h3 className="font-bold text-slate-900 text-sm">{event.title}</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">{event.title}</h3>
           </div>
 
           {/* Mentor controls */}
@@ -169,7 +169,7 @@ export default function EventCard({
             )}
             <span className="text-xs text-slate-500">
               by{' '}
-              <span className="font-semibold text-slate-700">
+              <span className="font-semibold text-slate-700 dark:text-slate-300">
                 {event.mentor.full_name}
               </span>
             </span>

@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Check Your Email</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Check Your Email</h2>
         <p className="text-slate-500 mb-6">We've sent a password reset link to your email.</p>
         <Link to="/login" className="text-brand-blue-600 font-semibold hover:underline text-sm">
           Back to Login
@@ -52,12 +52,12 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="card p-8 animate-fade-in">
-      <Link to="/login" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700 mb-6 transition-colors">
+      <Link to="/login" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700 dark:text-slate-300 mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back to login
       </Link>
 
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">Reset Password</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Reset Password</h1>
         <p className="text-slate-500 text-sm">Enter your email and we'll send you a reset link.</p>
       </div>
 

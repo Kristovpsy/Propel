@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeProvider';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { AuthProvider } from './components/auth/AuthProvider';
 import { ProtectedRoute, PublicOnlyRoute } from './components/auth/ProtectedRoute';
 import { ProfileProvider } from './lib/useProfileStore';
@@ -27,6 +28,7 @@ const MessagesPage = lazy(() => import('./pages/messages/MessagesPage'));
 const EventsPage = lazy(() => import('./pages/events/EventsPage'));
 const RatingsPage = lazy(() => import('./pages/ratings/RatingsPage'));
 const SettingsPage = lazy(() => import('./pages/settings/SettingsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Suspense fallback that matches the app's branded loading style
 function PageLoader() {
@@ -46,6 +48,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <ProfileProvider>
+          <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               {/* Public routes */}
@@ -99,12 +102,16 @@ function App() {
                 <Route path="/ratings" element={<RatingsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
               </Route>
+
+              {/* 404 catch-all */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
+          </ErrorBoundary>
         </ProfileProvider>
       </AuthProvider>
+      <ToastContainer />
     </ThemeProvider>
-    <ToastContainer />
   </BrowserRouter>
   );
 }

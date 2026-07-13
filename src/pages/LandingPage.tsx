@@ -12,10 +12,10 @@ export default function LandingPage() {
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
-            <a href="#mentors" className="text-slate-600 hover:text-brand-blue-600 transition-colors font-medium text-sm">Mentors</a>
-            <a href="#process" className="text-slate-600 hover:text-brand-blue-600 transition-colors font-medium text-sm">Process</a>
-            <a href="#features" className="text-slate-600 hover:text-brand-blue-600 transition-colors font-medium text-sm">Features</a>
-            <a href="#showcase" className="text-slate-600 hover:text-brand-blue-600 transition-colors font-medium text-sm">Showcase</a>
+            <a href="#mentors" className="text-slate-600 dark:text-slate-400 hover:text-brand-blue-600 transition-colors font-medium text-sm">Mentors</a>
+            <a href="#process" className="text-slate-600 dark:text-slate-400 hover:text-brand-blue-600 transition-colors font-medium text-sm">Process</a>
+            <a href="#features" className="text-slate-600 dark:text-slate-400 hover:text-brand-blue-600 transition-colors font-medium text-sm">Features</a>
+            <a href="#showcase" className="text-slate-600 dark:text-slate-400 hover:text-brand-blue-600 transition-colors font-medium text-sm">Showcase</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -39,7 +39,7 @@ export default function LandingPage() {
                 <span className="text-brand-green-700 text-sm font-semibold tracking-wider uppercase">Fueling Careers</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 text-balance">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 text-balance">
                 Reach Your{' '}
                 <span className="gradient-text">Full Potential</span>{' '}
                 with Expert Mentorship
@@ -68,7 +68,7 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
-                <span className="text-sm text-slate-500">Joined by <span className="font-semibold text-slate-700">2,200+</span> ambitious professionals</span>
+                <span className="text-sm text-slate-500">Joined by <span className="font-semibold text-slate-700 dark:text-slate-300">2,200+</span> ambitious professionals</span>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ export default function LandingPage() {
                 {/* Session Badge */}
                 <div className="absolute top-4 right-4 z-10 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
                   <div className="w-2 h-2 bg-brand-green-500 rounded-full animate-pulse-soft" />
-                  <span className="text-xs font-semibold text-slate-700">Session in progress</span>
+                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Session in progress</span>
                 </div>
                 
                 {/* Card Image Area */}
@@ -96,7 +96,7 @@ export default function LandingPage() {
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <p className="text-xs text-slate-400 uppercase tracking-wider">Goal</p>
-                      <p className="font-bold text-slate-900 text-lg">Senior Lead UI/UX</p>
+                      <p className="font-bold text-slate-900 dark:text-white text-lg">Senior Lead UI/UX</p>
                     </div>
                     <div className="w-14 h-14 rounded-full border-4 border-brand-green-500 flex items-center justify-center">
                       <span className="text-brand-green-600 font-bold text-sm">70%</span>
@@ -105,7 +105,7 @@ export default function LandingPage() {
                   <p className="text-brand-green-600 text-sm font-semibold mb-3">70% through program</p>
                   <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-lg">
                     <div className="w-2 h-2 bg-brand-green-500 rounded-full" />
-                    <span className="text-sm text-slate-600">Next session in 2 days</span>
+                    <span className="text-sm text-slate-600 dark:text-slate-400">Next session in 2 days</span>
                   </div>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function LandingPage() {
                 <div className={`w-12 h-12 rounded-xl ${feature.color === 'blue' ? 'bg-brand-blue-100' : 'bg-brand-green-100'} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className={`w-6 h-6 ${feature.color === 'blue' ? 'text-brand-blue-600' : 'text-brand-green-600'}`} />
                 </div>
-                <h3 className="font-bold text-slate-900 text-lg mb-2">{feature.title}</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-2">{feature.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{feature.desc}</p>
               </div>
             ))}
@@ -164,7 +164,7 @@ export default function LandingPage() {
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xs font-bold text-brand-blue-600 uppercase tracking-widest mb-2">Step {step.step}</div>
-                  <h3 className="font-bold text-slate-900 text-xl mb-3">{step.title}</h3>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-xl mb-3">{step.title}</h3>
                   <p className="text-slate-500 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
@@ -193,13 +193,13 @@ export default function LandingPage() {
                     <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-slate-600 mb-6 leading-relaxed italic">"{testimonial.text}"</p>
+                <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed italic">"{testimonial.text}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-brand-green-600 flex items-center justify-center text-white font-bold text-sm">
                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-900 text-sm">{testimonial.name}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-sm">{testimonial.name}</p>
                     <p className="text-xs text-slate-400">{testimonial.role}</p>
                   </div>
                 </div>
@@ -230,13 +230,13 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
               <img src="/propel-logo.png" alt="Propel" className="h-7 mb-4" />
-              <p className="font-semibold text-slate-900 mb-2">Professional Mentorship for Emergent Leaders</p>
+              <p className="font-semibold text-slate-900 dark:text-white mb-2">Professional Mentorship for Emergent Leaders</p>
               <p className="text-slate-400 text-sm leading-relaxed">
                 Empowering the next generation of professionals through structured mentorship and actionable private paths.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-4">Company</h4>
+              <h4 className="font-bold text-slate-900 dark:text-white mb-4">Company</h4>
               <ul className="space-y-3">
                 <li><a href="#" className="text-slate-500 hover:text-brand-blue-600 transition-colors text-sm">About Us</a></li>
                 <li><a href="#" className="text-slate-500 hover:text-brand-blue-600 transition-colors text-sm">Careers</a></li>
@@ -244,7 +244,7 @@ export default function LandingPage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-4">Legal</h4>
+              <h4 className="font-bold text-slate-900 dark:text-white mb-4">Legal</h4>
               <ul className="space-y-3">
                 <li><a href="#" className="text-slate-500 hover:text-brand-blue-600 transition-colors text-sm">Privacy Policy</a></li>
                 <li><a href="#" className="text-slate-500 hover:text-brand-blue-600 transition-colors text-sm">Terms of Service</a></li>

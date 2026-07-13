@@ -95,7 +95,7 @@ export default function ExploreMentorsPage() {
     <div className="animate-fade-in max-w-6xl mx-auto">
       {/* Page header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-3">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-brand-green-600 flex items-center justify-center">
             <Compass className="w-5 h-5 text-white" />
           </div>
@@ -117,7 +117,7 @@ export default function ExploreMentorsPage() {
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 Best Matches for You
               </h2>
               <p className="text-xs text-slate-400">
@@ -208,7 +208,7 @@ export default function ExploreMentorsPage() {
                   setSearchInput('');
                   setDebouncedSearch('');
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-slate-400"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -246,7 +246,7 @@ export default function ExploreMentorsPage() {
                   onChange={(e) => setAvailableOnly(e.target.checked)}
                   className="w-4 h-4 rounded border-slate-300 text-brand-green-600 focus:ring-brand-green-500"
                 />
-                <span className="text-sm font-medium text-slate-700">
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Available mentors only
                 </span>
                 <Users className="w-3.5 h-3.5 text-emerald-500" />
@@ -277,7 +277,7 @@ export default function ExploreMentorsPage() {
                       className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 ${
                         isSelected
                           ? 'bg-brand-blue-600 text-white border-brand-blue-600 shadow-sm'
-                          : 'bg-white text-slate-600 border-slate-200 hover:border-brand-blue-400 hover:text-brand-blue-600 hover:bg-brand-blue-50'
+                          : 'bg-white text-slate-600 dark:text-slate-400 border-slate-200 hover:border-brand-blue-400 hover:text-brand-blue-600 hover:bg-brand-blue-50'
                       }`}
                     >
                       {isSelected && '✓ '}
@@ -310,7 +310,7 @@ export default function ExploreMentorsPage() {
 
       {/* Section label when matches are shown */}
       {showMatchesSection && !hasActiveFilters && (
-        <h2 className="text-lg font-bold text-slate-900 mb-4 mt-2">All Mentors</h2>
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 mt-2">All Mentors</h2>
       )}
 
       {/* Results */}
@@ -363,7 +363,7 @@ export default function ExploreMentorsPage() {
           <div className="w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Compass className="w-10 h-10 text-slate-300" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-1">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
             No mentors found
           </h3>
           <p className="text-sm text-slate-500 max-w-xs mx-auto mb-4">

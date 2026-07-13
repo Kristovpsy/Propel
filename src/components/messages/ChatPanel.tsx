@@ -74,7 +74,7 @@ export default function ChatPanel({
         {onBack && (
           <button
             onClick={onBack}
-            className="text-slate-400 hover:text-slate-600 transition-colors lg:hidden"
+            className="text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors lg:hidden"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
@@ -91,7 +91,7 @@ export default function ChatPanel({
           </div>
         )}
         <div>
-          <p className="text-sm font-bold text-slate-900">{partnerName}</p>
+          <p className="text-sm font-bold text-slate-900 dark:text-white">{partnerName}</p>
           <p className="text-[11px] text-slate-400">
             {type === 'dm' ? 'Direct message' : 'Group chat'}
           </p>
@@ -156,7 +156,7 @@ export default function ChatPanel({
                     className={`max-w-[70%] ${
                       isOwn
                         ? 'bg-brand-blue-600 text-white rounded-2xl rounded-br-md'
-                        : 'bg-slate-100 text-slate-800 rounded-2xl rounded-bl-md'
+                        : 'bg-slate-100 text-slate-800 dark:text-slate-200 rounded-2xl rounded-bl-md'
                     } px-3.5 py-2`}
                   >
                     {!isOwn && showAvatar && type === 'group' && (
