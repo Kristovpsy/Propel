@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from './supabase';
 import { fetchMessages, sendMessage as sendMessageApi } from './api';
-import { profileCache } from './store';
 import { useToastStore } from './useToast';
 
 interface UseChatOptions {
@@ -22,8 +21,15 @@ interface ChatMessage {
   _optimistic?: boolean; // local-only flag for optimistic messages
 }
 
+// Lightweight sender info — only the fields needed for chat display
+interface SenderInfo {
+  id: string;
+  full_name: string;
+  avatar_url: string | null;
+}
+
 // Simple in-memory cache for sender profiles (avoids re-fetching)
-const senderCache = profileCache; // alias to global profile cache
+const senderCache = new Map<string, SenderInfo>();
 
 export function useChat({ type, channelId, userId }: UseChatOptions) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);

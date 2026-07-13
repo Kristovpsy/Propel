@@ -4,7 +4,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { supabase } from '../../lib/supabase';
 import { sendWelcomeEmail } from '../../lib/email';
-import { useAuthStore } from '../../lib/store';
+import { useAuthStore, cacheProfile } from '../../lib/store';
 import { mentorProfileSchema, type MentorProfileFormData } from '../../lib/validators';
 import { Loader2, Plus, X, Upload, ChevronRight, ChevronLeft, Camera } from 'lucide-react';
 
@@ -41,7 +41,7 @@ const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary', 'Prefer not to say'] as 
 
 export default function MentorOnboardingPage() {
   const navigate = useNavigate();
-  const { user, setProfile, setMentorProfile } = useAuthStore();
+  const { user, setProfile } = useAuthStore();
   const [step, setStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -149,7 +149,7 @@ export default function MentorOnboardingPage() {
       if (profileError) throw profileError;
 
       // Create mentor profile
-      const { data: mentorData, error: mentorError } = await supabase
+      const { data: _mentorData, error: mentorError } = await supabase
         .from('mentor_profiles')
         .insert({
           user_id: user.id,

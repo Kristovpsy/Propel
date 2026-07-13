@@ -1,5 +1,5 @@
 // src/lib/useProfileStore.tsx
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { supabase } from './supabase';
 import { useAuthStore } from './store';
 import { getProfile, cacheProfile, clearProfileCache } from './store';
